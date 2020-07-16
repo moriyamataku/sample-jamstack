@@ -1,10 +1,5 @@
 import { createClient, contentTypes } from './plugins/contentful.js'
-// let envSet = {}
 const types = contentTypes()
-const environment = process.env.NODE_ENV
-if (environment !== 'production') {
-  // envSet = require(`~/env.${environment}.js`)
-}
 
 export default {
   /*

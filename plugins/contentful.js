@@ -1,16 +1,15 @@
 const contentful = require('contentful')
-const envSet = require(`../env.${process.env.NODE_ENV || 'development'}.js`)
 
 module.exports = {
   createClient() {
     return contentful.createClient({
-      space: envSet.CTFL_SPACE,
-      accessToken: envSet.CTFL_ACCESS_TOKEN,
+      space: process.env.CTFL_SPACE,
+      accessToken: process.env.CTFL_ACCESS_TOKEN,
     })
   },
   contentTypes() {
     return {
-      post: envSet.CTFL_CONTENT_TYPE_POST,
+      post: process.env.CTFL_CONTENT_TYPE_POST,
     }
   },
 }
