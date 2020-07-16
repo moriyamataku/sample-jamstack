@@ -1,3 +1,11 @@
+import { createClient, contentTypes } from './plugins/contentful.js'
+// let envSet = {}
+const types = contentTypes()
+const environment = process.env.NODE_ENV
+if (environment !== 'production') {
+  // envSet = require(`~/env.${environment}.js`)
+}
+
 export default {
   /*
    ** Nuxt rendering mode
@@ -74,4 +82,17 @@ export default {
    ** See https://nuxtjs.org/api/configuration-build/
    */
   build: {},
+  generate: {
+    routes() {
+      const client = createClient()
+      return client.getEntries({ content_type: types.post }).then((entries) => {
+        return entries.items.map((entry) => {
+          return {
+            route: '/posts/' + entry.sys.id,
+            payload: entry,
+          }
+        })
+      })
+    },
+  },
 }

@@ -16,7 +16,8 @@ import { createClient } from '~/plugins/contentful.js'
 const client = createClient()
 export default {
   async asyncData({ params, payload }) {
-    // IDをキーに記事を取得
+    // payloadのデータがあれば、そちらから取得する
+    if (payload) return { post: payload }
     const entry = await client.getEntry(params.id)
     return {
       post: entry,

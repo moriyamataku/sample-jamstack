@@ -1,5 +1,5 @@
 const contentful = require('contentful')
-const envSet = require(`~/env.${process.env.NODE_ENV || 'development'}.js`)
+const envSet = require(`../env.${process.env.NODE_ENV || 'development'}.js`)
 
 module.exports = {
   createClient() {
