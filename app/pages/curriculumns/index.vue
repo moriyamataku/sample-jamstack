@@ -1,13 +1,14 @@
 <template>
-  <section class="container">
+  <div>
+    <h1>Curriculumns</h1>
     <ul>
-      <li v-for="(post, index) in posts" :key="index">
-        <nuxt-link :to="`/posts/${post.sys.id}`">{{
-          post.fields.title
+      <li v-for="(curriculumn, index) in curriculumns" :key="index">
+        <nuxt-link :to="`/curriculumns/${curriculumn.fields.path}/chapters`">{{
+          curriculumn.fields.title
         }}</nuxt-link>
       </li>
     </ul>
-  </section>
+  </div>
 </template>
 <script>
 import { createClient, contentTypes } from '~/plugins/contentful.js'
@@ -16,12 +17,11 @@ const client = createClient()
 const types = contentTypes()
 export default {
   async asyncData({ params }) {
-    // 記事一覧を取得
     const entries = await client.getEntries({
-      content_type: types.post,
+      content_type: types.curriculumn,
     })
     return {
-      posts: entries.items,
+      curriculumns: entries.items,
     }
   },
 }

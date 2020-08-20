@@ -1,20 +1,15 @@
-# sample-jamstack
+# lesson_chapterlist
+## Pre-requisite
+Node 14.5.0
 
-## Build Setup
+## setup
 
-```bash
-# install dependencies
-$ yarn install
+### env
+https://lifeistech.docbase.io/posts/1485907
 
-# serve with hot reload at localhost:3000
-$ yarn dev
+プロジェクト直下に `.env` を配置
 
-# build for production and launch server
-$ yarn build
-$ yarn start
-
-# generate static project
-$ yarn generate
+### run local
 ```
-
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+yarn dev
+```

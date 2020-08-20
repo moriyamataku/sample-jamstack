@@ -1,12 +1,15 @@
-import { createClient, contentTypes } from './plugins/contentful.js'
+import { createClient, contentTypes } from './app/plugins/contentful.js'
 const types = contentTypes()
+const env = require('dotenv').config()
 
 export default {
+  srcDir: 'app/',
   /*
    ** Nuxt rendering mode
    ** See https://nuxtjs.org/api/configuration-mode
    */
   mode: 'universal',
+  env: env.parsed,
   /*
    ** Nuxt target
    ** See https://nuxtjs.org/api/configuration-target
@@ -61,6 +64,8 @@ export default {
     '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt/content
     '@nuxt/content',
+    '@nuxtjs/bulma',
+    'nuxt-fontawesome',
   ],
   /*
    ** Axios module configuration
@@ -82,18 +87,35 @@ export default {
         fs: 'empty',
       }
     },
+    postcss: {
+      preset: {
+        features: {
+          customProperties: false,
+        },
+      },
+    },
   },
   generate: {
     routes() {
       const client = createClient()
-      return client.getEntries({ content_type: types.post }).then((entries) => {
-        return entries.items.map((entry) => {
-          return {
-            route: '/posts/' + entry.sys.id,
-            payload: entry,
-          }
+      return client
+        .getEntries({ content_type: types.curriculumn })
+        .then((entries) => {
+          return entries.items.map((entry) => {
+            return {
+              route: '/curriculumns/' + entry.fields.path,
+              payload: entry,
+            }
+          })
         })
-      })
     },
+  },
+  fontawesome: {
+    imports: [
+      {
+        set: '@fortawesome/free-solid-svg-icons',
+        icons: ['fas'],
+      },
+    ],
   },
 }

@@ -1,7 +1,4 @@
 const contentful = require('contentful')
-if (process.env.NODE_ENV === 'development') {
-  require('dotenv').config()
-}
 
 module.exports = {
   createClient() {
@@ -12,7 +9,7 @@ module.exports = {
   },
   contentTypes() {
     return {
-      post: process.env.CTFL_CONTENT_TYPE_POST,
+      curriculumn: process.env.CTFL_CONTENT_TYPE_CURRICULUMN,
     }
   },
 }
