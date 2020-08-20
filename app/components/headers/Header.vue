@@ -31,7 +31,10 @@
           :background="`${field(skill, 'backgroundColor')}`"
         />
       </div>
-      <a :href="`https:${curriculumn.fields.campMaterial.fields.file.url}`">
+      <a
+        v-show="curriculumn.fields.campMaterial"
+        :href="`https:${url(curriculumn.fields.campMaterial)}`"
+      >
         <button
           class="downloadButton"
           :style="`background-color: ${curriculumn.fields.mainColor};`"
@@ -62,6 +65,9 @@ export default {
   methods: {
     field(object, property) {
       return object ? object.fields[property] : ''
+    },
+    url(object) {
+      return object ? object.fields.file.url : ''
     },
   },
 }
