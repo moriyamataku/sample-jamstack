@@ -6,6 +6,9 @@ const env =
     : {
         CTFL_SPACE: process.env.CTFL_SPACE,
         CTFL_ACCESS_TOKEN: process.env.CTFL_ACCESS_TOKEN,
+        CTFL_CONTENT_TYPE_CURRICULUMN:
+          process.env.CTFL_CONTENT_TYPE_CURRICULUMN,
+        PLAYER_URL: process.env.PLAYER_URL,
       }
 
 export default {
