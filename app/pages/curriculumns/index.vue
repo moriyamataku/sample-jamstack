@@ -13,6 +13,11 @@
 <script>
 import { createClient, contentTypes } from '~/plugins/contentful.js'
 
+// eslint-disable-next-line no-console
+console.log(
+  `curriculumns/index.vue (${process.env.NODE_ENV}, ${process.env.CTFL_ACCESS_TOKEN})`
+)
+
 const client = createClient()
 const types = contentTypes()
 export default {
