@@ -1,6 +1,12 @@
 import { createClient, contentTypes } from './app/plugins/contentful.js'
 const types = contentTypes()
-const env = require('dotenv').config()
+const env =
+  process.env.NODE_ENV === 'development'
+    ? require('dotenv').config().parsed
+    : {
+        CTFL_SPACE: process.env.CTFL_SPACE,
+        CTFL_ACCESS_TOKEN: process.env.CTFL_ACCESS_TOKEN,
+      }
 
 export default {
   srcDir: 'app/',
@@ -9,7 +15,7 @@ export default {
    ** See https://nuxtjs.org/api/configuration-mode
    */
   mode: 'universal',
-  env: env.parsed,
+  env,
   /*
    ** Nuxt target
    ** See https://nuxtjs.org/api/configuration-target
