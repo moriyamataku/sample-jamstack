@@ -82,7 +82,7 @@ export default {
     imageSrc(imageObj) {
       return imageObj
         ? `https:${imageObj.fields.file.url}`
-        : 'http://via.placeholder.com/370x208'
+        : 'https://fakeimg.pl/370x208/ff0000/fff/?text=ReplaceImage&font=lobster'
     },
   },
 }
