@@ -14,11 +14,14 @@
       <div class="column chapterImageBox">
         <img
           class="chapterImage"
-          :src="`https:${lesson.fields.mainImage.fields.file.url}`"
+          :src="`${imageSrc(lesson.fields.mainImage)}`"
         />
       </div>
       <div class="column lessonBox">
-        <a :href="`${player(chapter.fields.story)}`">
+        <a
+          v-if="chapter.fields.story"
+          :href="`${player(chapter.fields.story)}`"
+        >
           <button class="playButton">
             ストーリーを見る
           </button>
@@ -69,10 +72,17 @@ export default {
   },
   methods: {
     player(lesson) {
-      return playerUrl(lesson.fields.projectName, lesson.fields.scenarioPath)
+      return lesson
+        ? playerUrl(lesson.fields.projectName, lesson.fields.scenarioPath)
+        : ''
     },
     toHtmlString(obj) {
       return sanitizeHTML(documentToHtmlString(obj))
+    },
+    imageSrc(imageObj) {
+      return imageObj
+        ? `https:${imageObj.fields.file.url}`
+        : 'http://via.placeholder.com/370x208'
     },
   },
 }
@@ -156,6 +166,7 @@ export default {
     letter-spacing: 0.03em;
     color: #000;
     margin-top: 25px;
+    margin-bottom: 50px;
 
     ul {
       list-style: disc;
